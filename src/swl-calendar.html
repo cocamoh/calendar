@@ -1,0 +1,259 @@
+<link rel="stylesheet" href="swl-calendar.css" shim-shadowdom>
+<script src="../sticky-list-headers/sticky-list-headers.js"></script>
+
+<template id="swl-calendar-year">
+	<header>
+		<menu>
+			<button>right</button>
+			<button>left</button>
+			<button>today</button>
+		</menu>
+		<div></div>
+		<menu>
+			<button>month</button>
+			<button>week</button>
+			<button>day</button>
+		</menu>
+	</header>
+	<div class="swl-calendar year">
+		<template>
+			<div class="month">
+				<header>
+					<h1></h1>
+				</header>
+				<div class="header">
+					<template>
+						<span></span>
+					</template>
+				</div>
+				<div class="content">
+					<template>
+						<div class="week">
+							<template>
+								<time></time>
+							</template>
+						</div>
+					</template>
+				</div>
+			</div>
+		</template>
+	</div>
+	<content></content>
+</template>
+
+
+<template id="swl-calendar-month">
+	<header>
+		<menu>
+			<button>right</button>
+			<button>left</button>
+			<button>today</button>
+		</menu>
+		<div></div>
+		<menu>
+			<button>year</button>
+			<button>week</button>
+			<button>day</button>
+		</menu>
+	</header>
+	<div class="swl-calendar month">
+		<template>
+			<div class="month">
+				<div class="header">
+					<template>
+						<span></span>
+					</template>
+				</div>
+				<div class="content">
+					<div class="background">
+						<template>
+							<div class="week">
+								<template>
+									<div class="day">
+										<div class="header">
+											<div></div>
+											<div></div>
+										</div>
+										<div class="footer hidden">
+										</div>
+									</div>
+								</template>
+							</div>
+						</template>
+					</div>
+					<div class="foreground">
+						<template>
+							<div class="week">
+								<template>
+									<div class="day">
+										<div></div>
+										<div></div>
+									</div>
+								</template>
+							</div>
+						</template>
+					</div>
+				</div>
+			</div>
+		</template>
+	</div>
+	<content></content>
+</template>
+
+
+<template id="swl-calendar-week">
+	<header>
+		<menu>
+			<button>right</button>
+			<button>left</button>
+			<button>today</button>
+		</menu>
+		<div></div>
+		<menu>
+			<button>year</button>
+			<button>month</button>
+			<button>day</button>
+		</menu>
+	</header>
+	<div class="swl-calendar week">
+		<template>
+			<div class="week">
+				<div class="header">
+					<template>
+						<div></div>
+					</template>
+				</div>
+				<div class="content">
+					<div class="background">
+						<div class="allday">
+							<template>
+								<div></div>
+							</template>
+						</div>
+						<div class="content">
+							<div class="day">
+								<template>
+									<div class="half-an-hour"></div>
+								</template>
+							</div>
+						</div>
+					</div>
+					<div class="foreground">
+						<div class="allday">
+							<template>
+								<div class="entry" x="" y="" span="">
+									<div class="summary"></div>
+									<div class="time"></div>
+								</div>
+							</template>
+						</div>
+						<div class="content">
+							<div class="day">
+								<template>
+									<div class="entry" x="" y="" span="">
+										<div class="time"></div>
+										<div class="summary"></div>
+										<div class="location"></div>
+									</div>
+								</template>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</template>
+	</div>
+	<content></content>
+</template>
+
+
+<template id="swl-calendar-day">
+	<header>
+		<menu>
+			<button>right</button>
+			<button>left</button>
+			<button>today</button>
+		</menu>
+		<div></div>
+		<menu>
+			<button>year</button>
+			<button>month</button>
+			<button>week</button>
+		</menu>
+	</header>
+	<div class="swl-calendar day">
+		<template>
+			<div class="day">
+				<div class="sidebar">
+					<div class="label">
+						<span></span>
+						<span></span>
+					</div>
+					<div class="month">
+						<div class="content">
+							<template>
+								<div class="cell"></div>
+							</template>
+						</div>
+					</div>
+					<div is="swl-sticky-list-headers" selector=".label" class="list">
+						<template>
+							<div class="label">
+								<div></div>
+								<div></div>
+							</div>
+							<ul>
+								<template>
+									<li></li>
+								</template>
+							</ul>
+						</template>
+					</div>
+				</div>
+				<div class="content">
+					<div class="header"></div>
+					<div class="events">
+						<div class="background">
+							<div class="allday">
+								<template>
+									<div></div>
+								</template>
+							</div>
+							<div class="content">
+								<div class="day">
+									<template>
+										<div class="half-an-hour"></div>
+									</template>
+								</div>
+							</div>
+						</div>
+						<div class="foreground">
+							<div class="allday">
+								<template>
+									<div class="entry" x="" y="" span="">
+										<div class="summary"></div>
+										<div class="time"></div>
+									</div>
+								</template>
+							</div>
+							<div class="content">
+								<div class="day">
+									<template>
+										<div class="entry" x="" y="" span="">
+											<div class="time"></div>
+											<div class="summary"></div>
+											<div class="location"></div>
+										</div>
+									</template>
+								</div>
+							</div>
+						</div>
+					</div>
+				</day>
+			</div>
+		</template>
+	</div>
+	<content></content>
+</template>
+
+<script src="swl-calendar.js"></script>

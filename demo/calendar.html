@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>SWL :: Calendar</title>
+	
+	
+	<!-- calendar -->
+	<link rel="import" href="../src/swl-calendar.html">
+	
+	<style>
+	html, body {
+		height: calc(100% - 3em);
+	}
+	</style>
+	
+	
+	</style>
+	
+</head>
+<body>
+	<swl-calendar view="day">
+		<swl-calendar-item from="2014-07-14" to="" allday="true" summary="A all">A all-day</swl-calendar-item>
+		<swl-calendar-item from="2014-07-17" to="2014-07-19" allday="true" summary="B all">B all-day</swl-calendar-item>
+		<swl-calendar-item from="2014-07-11" to="2014-07-16" allday="true" summary="C all">C all-day</swl-calendar-item>
+		<swl-calendar-item from="2014-07-15" to="2014-07-23" allday="true" summary="D all">D all-day</swl-calendar-item>
+		<swl-calendar-item from="2014-07-08" to="2014-07-21" allday="true" summary="E all">E all-day</swl-calendar-item>
+		
+		<swl-calendar-item from="2014-07-16T10:30:00+02:00" to="2014-07-16T14:00:00+02:00" allday="false" summary="A1">
+			<p>Day A1</p>
+		</swl-calendar-item>
+		<swl-calendar-item from="2014-07-16T08:15:00+02:00" to="2014-07-16T13:00:00+02:00" allday="false" summary="A2">
+			<p>Day A2</p>
+		</swl-calendar-item>
+		<swl-calendar-item from="2014-07-16T12:00:00+02:00" to="2014-07-16T13:00:00+02:00" allday="false" summary="A3 test with long long long long long and longer longer summary. Maybe I should add more more more summary characters.">
+			<p>Day A3</p>
+		</swl-calendar-item>
+
+		<swl-calendar-item from="2014-07-17T09:00:00+02:00" to="2014-07-17T20:00:00+02:00" allday="false" summary="Day B">Day B</swl-calendar-item>
+		<swl-calendar-item from="2014-07-17T14:00:00+02:00" to="2014-07-19T09:00:00+02:00" allday="false" summary="Day C">Day C</swl-calendar-item>
+		<swl-calendar-item from="2014-07-11T14:00:00+02:00" to="2014-07-15T18:00:00+02:00" allday="false" summary="Day D">Day D</swl-calendar-item>
+		
+		<p>this is a test (find me at <a href="http://iocast.github.io">GitHub Pages</a>)</p>
+	</swl-calendar>
+	
+</body>
+</html>

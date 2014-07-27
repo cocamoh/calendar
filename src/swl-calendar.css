@@ -1,0 +1,828 @@
+swl-calendar::shadow menu {
+  margin: 0;
+  padding: 0; }
+
+swl-calendar::shadow header {
+  display: flex;
+  flex-flow: row wrap;
+  box-sizing: border-box;
+  width: 100%;
+  border-bottom: 1px solid green; }
+
+swl-calendar::shadow header > div {
+  flex: 1;
+  text-align: center; }
+
+swl-calendar::shadow header > menu:first-of-type {
+  border: 3px solid purple; }
+
+swl-calendar::shadow header > menu:last-of-type {
+  border: 3px solid blue; }
+
+swl-calendar::shadow .swl-calendar.year {
+  display: flex;
+  flex-flow: row wrap;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 267px; }
+
+swl-calendar::shadow .swl-calendar.year .month {
+  flex: 1 0 23.125%;
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+  min-width: 267px; }
+
+swl-calendar::shadow .swl-calendar.year .month .header {
+  display: flex;
+  flex-flow: row wrap;
+  min-width: 267px;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 2px; }
+
+swl-calendar::shadow .swl-calendar.year .month .header span {
+  flex: 1 0 0.37202%;
+  position: relative;
+  overflow: hidden;
+  margin: 1px;
+  text-align: center;
+  min-width: 30px;
+  min-height: 1em;
+  display: inline-block; }
+
+swl-calendar::shadow .swl-calendar.year .month .header span:nth-of-type(6) {
+  color: grey; }
+
+swl-calendar::shadow .swl-calendar.year .month .header span:nth-of-type(7) {
+  color: lightgrey; }
+
+swl-calendar::shadow .swl-calendar.year .month .content {
+  padding: 0;
+  margin: 0; }
+
+swl-calendar::shadow .swl-calendar.year .month .content .week {
+  display: flex;
+  flex-flow: row wrap;
+  min-width: 267px;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 2px; }
+
+swl-calendar::shadow .swl-calendar.year .month .content .week time {
+  flex: 1 0 0.37202%;
+  position: relative;
+  overflow: hidden;
+  margin: 1px;
+  min-width: 30px;
+  min-height: 1em;
+  border: none;
+  display: inline-block;
+  text-align: center; }
+
+swl-calendar::shadow .swl-calendar.year .month .content .week time:nth-of-type(6) {
+  color: grey; }
+
+swl-calendar::shadow .swl-calendar.year .month .content .week time:nth-of-type(7) {
+  color: lightgrey; }
+
+swl-calendar::shadow .swl-calendar.year .month .content .week time.inactive {
+  background-color: none;
+  border: none;
+  /*
+  vertical-align: bottom;
+  min-height: 1.1em;
+  */ }
+
+swl-calendar::shadow .swl-calendar.year .month .content .week time.today {
+  background-color: green; }
+
+swl-calendar::shadow .swl-calendar.year .month .content .week time.busy {
+  background-color: orange; }
+
+swl-calendar::shadow .swl-calendar.month {
+  height: 100%; }
+
+swl-calendar::shadow .swl-calendar.month .month {
+  height: 100%;
+  position: relative; }
+
+swl-calendar::shadow .swl-calendar.month .header {
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-row: 1fr;
+  grid-template-columns: repeat(7, 1fr);
+  box-sizing: border-box; }
+
+swl-calendar::shadow .swl-calendar.month .header span {
+  text-align: right;
+  font-style: italic; }
+
+swl-calendar::shadow .swl-calendar.month .header span:nth-of-type(6) {
+  color: grey; }
+
+swl-calendar::shadow .swl-calendar.month .header span:nth-of-type(7) {
+  color: lightgrey; }
+
+swl-calendar::shadow .swl-calendar.month .content {
+  height: 100%;
+  position: relative; }
+
+swl-calendar::shadow .swl-calendar.month .background {
+  height: 100%;
+  position: relative; }
+
+swl-calendar::shadow .swl-calendar.month .background .week {
+  box-sizing: border-box;
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(7, 1fr);
+  width: 100%;
+  overflow: hidden;
+  position: relative; }
+
+swl-calendar::shadow .swl-calendar.month .background .week:nth-last-of-type(5),
+swl-calendar::shadow .swl-calendar.month .background .week:nth-last-of-type(5) ~ .week {
+  height: 20%; }
+
+swl-calendar::shadow .swl-calendar.month .background .week:nth-last-of-type(6),
+swl-calendar::shadow .swl-calendar.month .background .week:nth-last-of-type(6) ~ .week {
+  height: 16%; }
+
+swl-calendar::shadow .swl-calendar.month .background .week .day {
+  border-top: 1px solid black;
+  height: calc(100% - 10px);
+  padding: 5px;
+  display: flex;
+  flex-direction: column; }
+
+swl-calendar::shadow .swl-calendar.month .background .week .day:nth-of-type(6) {
+  border-top: 1px solid grey;
+  color: grey; }
+
+swl-calendar::shadow .swl-calendar.month .background .week .day:nth-of-type(7) {
+  border-top: 1px solid lightgrey;
+  color: lightgrey; }
+
+swl-calendar::shadow .swl-calendar.month .background .week .day.inactive {
+  border: 0; }
+
+swl-calendar::shadow .swl-calendar.month .background .week .day.today {
+  background: green; }
+
+swl-calendar::shadow .swl-calendar.month .background .week .day div.header {
+  display: flex;
+  flex-direction: row;
+  flex: 1; }
+
+swl-calendar::shadow .swl-calendar.month .background .week .day div.header div.first-of-type {
+  align-self: flex-start;
+  text-align: left; }
+
+swl-calendar::shadow .swl-calendar.month .background .week .day div.header div.weeknumber {
+  text-align: center;
+  background-color: lightgrey;
+  font-size: 0.85em;
+  width: 1.5em;
+  height: 1.2em; }
+
+swl-calendar::shadow .swl-calendar.month .background .week .day div.header div:last-of-type {
+  flex: 1;
+  text-align: right; }
+
+swl-calendar::shadow .swl-calendar.month .background .week .day div.footer {
+  background-color: none;
+  color: grey;
+  text-align: center; }
+
+swl-calendar::shadow .swl-calendar.month .background .week .day div.footer.hidden {
+  display: none; }
+
+swl-calendar::shadow .swl-calendar.month .foreground {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0; }
+
+swl-calendar::shadow .swl-calendar.month .foreground .week {
+  box-sizing: border-box;
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: repeat(7, 1fr);
+  overflow: hidden;
+  position: relative; }
+
+swl-calendar::shadow .swl-calendar.month .foreground .week div > div {
+  content: ' ';
+  display: block;
+  height: 1em; }
+
+swl-calendar::shadow .swl-calendar.month .foreground .week:nth-last-of-type(5),
+swl-calendar::shadow .swl-calendar.month .foreground .week:nth-last-of-type(5) ~ .week {
+  height: 20%; }
+
+swl-calendar::shadow .swl-calendar.month .foreground .week:nth-last-of-type(6),
+swl-calendar::shadow .swl-calendar.month .foreground .week:nth-last-of-type(6) ~ .week {
+  height: 16%; }
+
+swl-calendar::shadow .swl-calendar.month .foreground .week .day {
+  border-top: 1px solid black;
+  height: calc(100% - 10px);
+  padding: 5px;
+  display: flex;
+  flex-direction: column; }
+
+swl-calendar::shadow .swl-calendar.month .foreground .week .day div:first-of-type {
+  text-align: left;
+  flex: 1; }
+
+swl-calendar::shadow .swl-calendar.month .foreground .week .day div:last-of-type {
+  text-align: right;
+  flex: 1; }
+
+/***********************
+* MONTH ENTRY
+*/
+swl-calendar::shadow .swl-calendar.month .foreground .week .entry {
+  border: 1px solid black;
+  background-color: rgba(255, 165, 0, 0.7);
+  margin: 1px;
+  border-radius: 3px;
+  padding: 1px;
+  font-size: 0.9em; }
+
+swl-calendar::shadow .swl-calendar.month .foreground .week .entry.hover {
+  background-color: rgba(255, 165, 0, 0.9); }
+
+swl-calendar::shadow .swl-calendar.month .foreground .week .entry.hidden {
+  display: none; }
+
+swl-calendar::shadow .swl-calendar.month .foreground .week .entry.left {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left-style: none; }
+
+swl-calendar::shadow .swl-calendar.month .foreground .week .entry.right {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right-style: none; }
+
+/***********************
+* WEEK
+*/
+swl-calendar::shadow .swl-calendar.week {
+  height: 100%;
+  padding-bottom: 20px; }
+
+swl-calendar::shadow .swl-calendar.week .week {
+  height: 100%;
+  position: relative; }
+
+swl-calendar::shadow .swl-calendar.week .header {
+  display: -webkit-grid;
+  /* Old Syntax */
+  -webkit-grid-rows: 1fr;
+  -webkit-grid-columns: 70px repeat(7, 1fr);
+  /* New Syntax */
+  -webkit-grid-definition-rows: 1fr;
+  -webkit-grid-definition-columns: 70px repeat(7, 1fr);
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-rows: 1fr;
+  grid-template-columns: 70px repeat(7, 1fr);
+  box-sizing: border-box;
+  padding-top: 5px; }
+
+swl-calendar::shadow .swl-calendar.week .header > div:nth-of-type(7) {
+  color: grey; }
+
+swl-calendar::shadow .swl-calendar.week .header > div:nth-of-type(8) {
+  color: lightgrey; }
+
+swl-calendar::shadow .swl-calendar.week .header > div {
+  text-align: center;
+  font-style: italic;
+  border-bottom: 1px solid black;
+  margin: 0 5px; }
+
+swl-calendar::shadow .swl-calendar.week .header > div.today {
+  background-color: green; }
+
+swl-calendar::shadow .swl-calendar.week .header > div:first-of-type {
+  border: none;
+  display: flex;
+  justify-content: flex-end; }
+
+swl-calendar::shadow .swl-calendar.week .header > div > div.weeknumber {
+  text-align: center;
+  background-color: lightgrey;
+  font-size: 0.85em;
+  width: 1.5em;
+  height: 1.2em;
+  border: none; }
+
+swl-calendar::shadow .swl-calendar.week .content {
+  height: 100%;
+  position: relative; }
+
+/***********************
+* WEEK BACKGROUND
+*/
+swl-calendar::shadow .swl-calendar.week .background {
+  height: 100%;
+  position: relative; }
+
+swl-calendar::shadow .swl-calendar.week .background .allday {
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-rows: 1fr;
+  grid-template-columns: 70px repeat(7, 1fr);
+  box-sizing: border-box;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  min-height: 2em;
+  border-bottom: 2px solid black; }
+
+swl-calendar::shadow .swl-calendar.week .background .allday > div:nth-of-type(7) {
+  color: grey; }
+
+swl-calendar::shadow .swl-calendar.week .background .allday > div:nth-of-type(8) {
+  color: lightgrey; }
+
+swl-calendar::shadow .swl-calendar.week .background .allday .label {
+  font-weight: bold; }
+
+swl-calendar::shadow .swl-calendar.week .background .content {
+  height: calc(100% - 2em);
+  width: 100%;
+  position: relative;
+  overflow: hidden; }
+
+swl-calendar::shadow .swl-calendar.week .background .content .day {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(48, 1.5em);
+  grid-template-columns: 70px repeat(7, 1fr);
+  box-sizing: border-box; }
+
+swl-calendar::shadow .swl-calendar.week .background .content .day > div {
+  border: none;
+  margin: 0 5px; }
+
+swl-calendar::shadow .swl-calendar.week .background .content .day .half-an-hour:nth-of-type(n) {
+  box-sizing: border-box;
+  border-bottom: 1px solid black; }
+
+swl-calendar::shadow .swl-calendar.week .background .content .day .half-an-hour:nth-of-type(2n) {
+  box-sizing: border-box;
+  border-bottom: 1px solid grey; }
+
+/***********************
+* WEEK FOREGROUND
+*/
+swl-calendar::shadow .swl-calendar.week .foreground {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0; }
+
+swl-calendar::shadow .swl-calendar.week .foreground .allday {
+  box-sizing: border-box;
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-rows: 1fr;
+  grid-template-columns: 70px repeat(7, 1fr);
+  box-sizing: border-box;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  overflow: hidden;
+  position: relative;
+  min-height: 2em; }
+
+swl-calendar::shadow .swl-calendar.week .foreground .allday > div:nth-of-type(7) {
+  color: grey; }
+
+swl-calendar::shadow .swl-calendar.week .foreground .allday > div:nth-of-type(8) {
+  color: lightgrey; }
+
+/***********************
+* WEEK ALL ENTRY
+*/
+swl-calendar::shadow .swl-calendar.week .foreground .entry {
+  border: 1px solid black;
+  background-color: rgba(255, 165, 0, 0.7);
+  margin: 1px;
+  border-radius: 3px;
+  padding: 1px;
+  font-size: 0.9em;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column; }
+
+swl-calendar::shadow .swl-calendar.week .foreground .entry:hover {
+  background-color: rgba(255, 165, 0, 0.9); }
+
+swl-calendar::shadow .swl-calendar.week .foreground .entry.hover {
+  background-color: rgba(255, 165, 0, 0.9); }
+
+swl-calendar::shadow .swl-calendar.week .foreground .entry:focus {
+  outline: none;
+  background-color: rgba(255, 165, 0, 0.9); }
+
+swl-calendar::shadow .swl-calendar.week .foreground .entry.focus {
+  outline: none;
+  background-color: rgba(255, 165, 0, 0.9); }
+
+swl-calendar::shadow .swl-calendar.week .foreground .day .entry {
+  height: 100%;
+  border-radius: 8px;
+  overflow: hidden; }
+
+swl-calendar::shadow .swl-calendar.week .foreground .entry.left {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left-style: none; }
+
+swl-calendar::shadow .swl-calendar.week .foreground .entry.right {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right-style: none; }
+
+swl-calendar::shadow .swl-calendar.week .foreground .entry.top {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-top-style: none; }
+
+swl-calendar::shadow .swl-calendar.week .foreground .entry.bottom {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-style: none; }
+
+swl-calendar::shadow .swl-calendar.week .foreground .entry .time {
+  text-align: right;
+  white-space: nowrap;
+  min-height: 1.2em;
+  font-size: 0.8em;
+  font-style: italic; }
+
+swl-calendar::shadow .swl-calendar.week .foreground .entry .summary {
+  font-weight: bold;
+  overflow: hidden; }
+
+/***********************
+* WEEK ALL-DAY ENTRY
+*/
+swl-calendar::shadow .swl-calendar.week .foreground .allday .entry {
+  flex-direction: row; }
+
+swl-calendar::shadow .swl-calendar.week .foreground .allday .entry .summary {
+  flex: 1; }
+
+swl-calendar::shadow .swl-calendar.week .foreground .content {
+  height: calc(100% - 2em);
+  width: 100%;
+  overflow-y: scroll; }
+
+swl-calendar::shadow .swl-calendar.week .foreground .content .day {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(48, 1.5em);
+  grid-template-columns: 70px repeat(7, 1fr);
+  box-sizing: border-box; }
+
+/***********************
+* WEEK ENTRY
+*/
+swl-calendar::shadow .swl-calendar.week .foreground .content .day > div {
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  margin: 0 5px;
+  content: ' '; }
+
+/***********************
+* DAY
+*/
+swl-calendar::shadow .swl-calendar.day {
+  height: 100%; }
+
+swl-calendar::shadow .swl-calendar.day > .day {
+  height: 100%;
+  position: relative;
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr;
+  box-sizing: border-box;
+  margin-top: 10px; }
+
+/***********************
+* DAY SIDEBAR
+*/
+swl-calendar::shadow .swl-calendar.day .day .sidebar {
+  height: inherit;
+  margin-right: 10px;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 35vh 1fr;
+  grid-template-columns: 35vh 1fr;
+  box-sizing: border-box; }
+
+/***********************
+* DAY SIDEBAR LABEL
+*/
+swl-calendar::shadow .swl-calendar.day .day .sidebar > .label {
+  height: inherit;
+  grid-row: 1;
+  grid-column: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+swl-calendar::shadow .swl-calendar.day .day .sidebar > .label :first-child {
+  font-size: 20vmin; }
+
+swl-calendar::shadow .swl-calendar.day .day .sidebar > .label :last-child {
+  font-style: italic; }
+
+/***********************
+* DAY SIDEBAR MONTH
+*/
+swl-calendar::shadow .swl-calendar.day .day .sidebar > .month {
+  min-width: 270px;
+  height: inherit;
+  grid-row: 1;
+  grid-column: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box; }
+
+swl-calendar::shadow .swl-calendar.day .day .sidebar > .month .content {
+  width: 100%;
+  display: grid;
+  grid-auto-flex: row;
+  grid-template-rows: 1fr;
+  grid-template-columns: 40px repeat(7, 1fr);
+  box-sizing: border-box; }
+
+swl-calendar::shadow .swl-calendar.day .day .sidebar > .month .content .cell {
+  margin: 2px;
+  text-align: center; }
+
+swl-calendar::shadow .swl-calendar.day .day .sidebar > .month .content .cell:nth-of-type(n+9) {
+  border: 1px solid grey; }
+
+swl-calendar::shadow .swl-calendar.day .day .sidebar > .month .content .cell.active {
+  background-color: orange; }
+
+swl-calendar::shadow .swl-calendar.day .day .sidebar > .month .content .cell.today {
+  background-color: green; }
+
+swl-calendar::shadow .swl-calendar.day .day .sidebar > .month .content .cell.inactive {
+  border: none; }
+
+swl-calendar::shadow .swl-calendar.day .day .sidebar > .month .content .cell:nth-of-type(8n-7) {
+  border: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center; }
+
+swl-calendar::shadow .swl-calendar.day .day .sidebar > .month .content .cell:nth-of-type(8n-7) :first-child {
+  text-align: center;
+  background-color: lightgrey;
+  font-size: 0.9rem;
+  width: 20px; }
+
+/***********************
+* DAY SIDEBAR LIST
+*/
+swl-calendar::shadow .swl-calendar.day .day .sidebar > .list {
+  height: inherit;
+  grid-row: 2;
+  grid-column: 1 / span 2;
+  overflow: scroll;
+  position: relative; }
+
+swl-calendar::shadow .swl-calendar.day .day .sidebar > .list .label,
+swl-calendar::shadow .swl-calendar.day .day .sidebar > .list::shadow .label {
+  font-style: bold;
+  display: flex;
+  flex-direction: row;
+  flex-flow: wrap;
+  width: 100%; }
+
+swl-calendar::shadow .swl-calendar.day .day .sidebar > .list .label > div:first-of-type,
+swl-calendar::shadow .swl-calendar.day .day .sidebar > .list::shadow .label > div:first-of-type {
+  flex: 1; }
+
+swl-calendar::shadow .swl-calendar.day .day .sidebar > .list ul,
+swl-calendar::shadow .swl-calendar.day .day .sidebar > .list::shadow ul {
+  list-style: none;
+  padding-left: 0; }
+
+/***********************
+* DAY CONTENT
+*/
+swl-calendar::shadow .swl-calendar.day .day > .content {
+  height: inherit;
+  margin-left: 10px;
+  position: relative;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: 2em 1fr;
+  grid-template-columns: 1fr;
+  box-sizing: border-box; }
+
+/***********************
+* DAY CONTENT HEADER
+*/
+swl-calendar::shadow .swl-calendar.day .day .content .header {
+  text-align: right;
+  margin-bottom: 20px;
+  font-size: 1.2em;
+  height: 2em;
+  grid-column: 1;
+  grid-row: 1; }
+
+/***********************
+* DAY CONTENT EVENTS
+*/
+swl-calendar::shadow .swl-calendar.day .day .content .events {
+  position: relative;
+  height: inherit;
+  grid-column: 1;
+  grid-row: 2; }
+
+/***********************
+* EVENTS BACKGROUND
+*/
+swl-calendar::shadow .swl-calendar.day .day .content .events .background {
+  height: 100%;
+  position: relative; }
+
+swl-calendar::shadow .swl-calendar.day .day .content .events .background .allday {
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-rows: 1fr;
+  grid-template-columns: 70px 1fr;
+  box-sizing: border-box;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  min-height: 2em;
+  border-bottom: 2px solid black; }
+
+swl-calendar::shadow .swl-calendar.day .day .content .events .background .allday .label {
+  font-weight: bold; }
+
+swl-calendar::shadow .swl-calendar.day .day .content .events .background .content {
+  height: calc(100% - 2em);
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  margin-left: 0; }
+
+swl-calendar::shadow .swl-calendar.day .day .content .events .background .content .day {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(48, 1.5em);
+  grid-template-columns: 70px 1fr;
+  box-sizing: border-box; }
+
+swl-calendar::shadow .swl-calendar.day .day .content .events .background .content .day > div {
+  border: none;
+  margin: 0 5px; }
+
+swl-calendar::shadow .swl-calendar.day .day .content .events .background .day .half-an-hour:nth-of-type(n) {
+  box-sizing: border-box;
+  border-bottom: 1px solid black; }
+
+swl-calendar::shadow .swl-calendar.day .day .content .events .background .day .half-an-hour:nth-of-type(2n) {
+  box-sizing: border-box;
+  border-bottom: 1px solid grey; }
+
+/***********************
+* EVENTS FOREGROUND
+*/
+swl-calendar::shadow .swl-calendar.day .foreground {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0; }
+
+swl-calendar::shadow .swl-calendar.day .foreground .allday {
+  box-sizing: border-box;
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-rows: 1fr;
+  grid-template-columns: 70px 1fr;
+  box-sizing: border-box;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  overflow: hidden;
+  position: relative;
+  min-height: 2em; }
+
+swl-calendar::shadow .swl-calendar.day .foreground .allday .entry {
+  flex-direction: row; }
+
+swl-calendar::shadow .swl-calendar.day .foreground .allday .entry .summary {
+  flex: 1; }
+
+swl-calendar::shadow .swl-calendar.day .foreground .content {
+  position: relative;
+  height: calc(100% - 2em);
+  overflow-y: scroll; }
+
+swl-calendar::shadow .swl-calendar.day .foreground .content .day {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(48, 1.5em);
+  grid-template-columns: 70px 1fr;
+  box-sizing: border-box; }
+
+swl-calendar::shadow .swl-calendar.day .foreground .content .day > div {
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  margin: 0 5px;
+  content: ' '; }
+
+/***********************
+* DAY ENTRY
+*/
+swl-calendar::shadow .swl-calendar.day .foreground .entry {
+  border: 1px solid black;
+  background-color: rgba(255, 165, 0, 0.7);
+  margin: 1px;
+  border-radius: 3px;
+  padding: 1px;
+  font-size: 0.9em;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column; }
+
+swl-calendar::shadow .swl-calendar.day .foreground .entry:hover {
+  background-color: rgba(255, 165, 0, 0.9); }
+
+swl-calendar::shadow .swl-calendar.day .foreground .entry:focus {
+  outline: none;
+  background-color: rgba(255, 165, 0, 0.9); }
+
+swl-calendar::shadow .swl-calendar.day .foreground .day .entry {
+  height: 100%;
+  border-radius: 8px;
+  overflow: hidden; }
+
+swl-calendar::shadow .swl-calendar.day .foreground .entry.left {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left-style: none; }
+
+swl-calendar::shadow .swl-calendar.day .foreground .entry.right {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right-style: none; }
+
+swl-calendar::shadow .swl-calendar.day .foreground .entry.top {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-top-style: none; }
+
+swl-calendar::shadow .swl-calendar.day .foreground .entry.bottom {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-style: none; }
+
+swl-calendar::shadow .swl-calendar.day .foreground .entry .time {
+  text-align: right;
+  white-space: nowrap;
+  min-height: 1.2em;
+  font-size: 0.8em;
+  font-style: italic; }
+
+swl-calendar::shadow .swl-calendar.day .foreground .entry .summary {
+  font-weight: bold;
+  overflow: hidden; }
+
+/*
+swl-calendar::shadow .swl-calendar.week .foreground .content .day > div:nth-of-type(n) {
+	border-bottom: 1px solid grey;
+}
+swl-calendar::shadow .swl-calendar.week .foreground .content .day > div:nth-of-type(2n) {
+	border-bottom: 1px solid black;
+}
+*/
+/*
+// target Light DOM nodes that pass through an insertion point which is the content element in the template
+swl-calendar::shadow content::content p {
+	background-color: blue;
+}
+*/
+/*
+// completely ignores all shadow boundaries and crosses into any number of shadow trees
+swl-calendear /deep/ p {
+	background-color: blue;
+}
+*/
