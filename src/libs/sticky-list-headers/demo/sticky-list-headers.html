@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>SWL :: Sticky List Headers</title>
+		
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/polymer/0.3.4/platform.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/polymer/0.3.4/polymer.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.0/styles/railscasts.min.css" />
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.0/highlight.min.js"></script>
+		
+		<script>hljs.initHighlightingOnLoad();</script>
+		
+		<script src="../src/sticky-list-headers.min.js"></script>
+		
+		<style type="text/css">
+			body {
+				background-color: #353535;
+				color: #FFFFFF;
+			}
+			a {
+				color: #78AF84;
+			}
+			pre {
+				margin: 0;
+			}
+			.example {
+				display: flex;
+				flex-direction: row;
+				flex-flow: wrap;
+			}
+			.code {
+				min-width: 707px;
+				margin: 0 10px;
+			}
+			.container {
+				margin: 0 10px;
+				position: relative;
+				overflow: scroll;
+				height: 320px;
+				width: 200px;
+				min-width: 200px;
+				background-color: #78AF84;
+				border: 1px solid #00420E;
+			}
+			.header,
+			::shadow .header {
+				padding: 1%;
+				position: relative;
+				z-index: 1;
+				padding-bottom: 10px;
+				background-color: #C7AD66;
+				border: 1px solid #573F00;
+				-moz-box-shadow: 0 0 8px #573F00;
+				-webkit-box-shadow: 0 0 8px #573F00;
+				box-shadow: 0 0 8px #573F00;
+			}
+		</style>
+	</head>
+	<body>
+		<p>In this example you see how does the <strong>SWL</strong> <code>sticky-list-headers</code> div extension works. All you need to do is to import the library, which can be found on <a href="https://github.com/semantic-web-library/sticky-list-headers">GitHub</a> and define your parent <code>div</code> to be <code>sticky-list-headers</code>. Lastly you need to define a <code>selector</code> for your headers which could be for example a class name. The selector should be in the form of the JavaScript function <code>element.querySelectorAll</code>.</p>
+		<p>
+			<pre><code class="html">...
+&lt;script src=&quot;../src/sticky-list-headers.js&quot;&gt;&lt;/script&gt;
+...
+&lt;div is=&quot;swl-sticky-list-headers&quot; selector=&quot;.header&quot; ...&gt;
+...
+&lt;/div&gt;</code></pre>
+		</p>
+		<p>It could be that it is not working when you try this example in your page. That is because this library uses HTML5 <strong>custom elements</strong> and <strong>shadow root</strong>. Hence try to load the polyfills from Polymer.</p>
+		<p>
+			<pre><code class="html">...
+&lt;script src=&quot;http://cdnjs.cloudflare.com/ajax/libs/polymer/0.3.4/platform.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;http://cdnjs.cloudflare.com/ajax/libs/polymer/0.3.4/polymer.js&quot;&gt;&lt;/script&gt;
+...</code></pre>
+		</p>
+		<p>Lastly do not forget to apply your header styles to the shadow root (<code>::shadow</code>).</p>
+		<p>
+			<pre><code class="css">...
+.header,
+::shadow .header {
+	position: relative;
+	z-index: 1;
+	padding-bottom: 10px;
+	background-color: #C7AD66;
+	border: 1px solid #573F00;
+	-moz-box-shadow: 0 0 8px #573F00;
+	-webkit-box-shadow: 0 0 8px #573F00;
+	box-shadow: 0 0 8px #573F00;
+}
+...</code></pre>
+		</p>
+		<div class="example">
+			<div is="swl-sticky-list-headers" selector=".header" class="container">
+			<div class="header">(A)</div>
+			<p>a 1</p>
+			<p>a 2</p>
+			<p>a 3</p>
+			<p>a 4</p>
+			<p>a 5</p>
+			<p>a 6</p>
+			<p>a 8</p>
+			<p>a 9</p>
+			<p>a 10</p>
+			<p>a 11</p>
+			<p>a 12</p>
+			<p>a 13</p>
+			<p>a 14</p>
+			<p>a 15</p>
+			<p>a 16</p>
+			<div class="header">
+				<p>(B) this is a</p>
+				<p>larger header</p>
+			</div>
+			<p>b 1</p>
+			<p>b 2</p>
+			<p>b 3</p>
+			<p>b 4</p>
+			<p>b 5</p>
+			<div class="header">(C)</div>
+			<p>c 1</p>
+			<p>c 2</p>
+			<p>c 3</p>
+			<p>c 4</p>
+			<p>c 5</p>
+			<p>c 6</p>
+			<p>c 8</p>
+			<p>c 9</p>
+			<div class="header">(D)</div>
+			<p>d 1</p>
+			<p>d 2</p>
+			<p>d 3</p>
+			<p>d 4</p>
+			<p>d 5</p>
+			<p>d 6</p>
+			<p>d 7</p>
+			<p>d 8</p>
+			<p>d 9</p>
+			<div class="header">(E)</div>
+			<p>e 1</p>
+		</div>
+		
+			<div class="code">
+				<pre><code class="html">&lt;html&gt;
+	&lt;head&gt;
+		...
+		&lt;script src=&quot;../src/sticky-list-headers.min.js&quot;&gt;&lt;/script&gt;
+		...
+	&lt;/head&gt;
+	&lt;body&gt;
+		...
+		&lt;div is=&quot;swl-sticky-list-headers&quot; selector=&quot;.header&quot; class=&quot;container&quot;&gt;
+			&lt;div class=&quot;header&quot;&gt;(A)&lt;/div&gt;
+			&lt;p&gt;a 1&lt;/p&gt;
+			...
+			&lt;p&gt;a 16&lt;/p&gt;
+			&lt;div class=&quot;header&quot;&gt;
+				&lt;p&gt;(B) this is a&lt;/p&gt;
+				&lt;p&gt;larger header&lt;/p&gt;
+			&lt;/div&gt;
+			&lt;p&gt;b 1&lt;/p&gt;
+			...
+		&lt;/div&gt;
+		...
+	&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+			</div>
+		</div>
+	</body>
+</html>
+
