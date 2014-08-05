@@ -34,7 +34,8 @@
 					
 					div.appendChild(header.cloneNode(true));
 					
-					header.setAttribute('style', header.getAttribute('style') + "filter:alpha(opacity=0); opacity:0;");
+					var style = header.getAttribute('style') || "";
+					header.setAttribute('style', style + "filter:alpha(opacity=0); opacity:0;");
 					
 					
 					var style = "position: absolute; width: 100%;"
@@ -58,7 +59,8 @@
 	});
 	swlStickyListHeadersProto.calculateOffsets = function() {
 		this.swlHeaders.forEach(function(header, i) {
-			this.shadowRoot.querySelector('div[data-offset-top]:nth-of-type('+(i+1)+')').setAttribute('data-offset-top', header.offsetTop);
+			//this.shadowRoot.querySelector('div[data-offset-top]:nth-of-type('+(i+1)+')').setAttribute('data-offset-top', header.offsetTop);
+			this.shadowRoot.querySelectorAll('div[data-offset-top]')[i].setAttribute('data-offset-top', header.offsetTop);
 		}.bind(this));
 	}
 	swlStickyListHeadersProto.scroll = function() {
