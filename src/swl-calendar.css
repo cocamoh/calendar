@@ -525,8 +525,8 @@ swl-calendar::shadow .swl-calendar.day .day .sidebar {
   margin-right: 10px;
   width: 100%;
   display: grid;
-  grid-template-rows: 35vh 1fr;
-  grid-template-columns: 35vh 1fr;
+  grid-template-rows: minmax(min-content, 170px) 1fr;
+  grid-template-columns: 35vh auto;
   box-sizing: border-box; }
 
 /***********************
@@ -551,7 +551,7 @@ swl-calendar::shadow .swl-calendar.day .day .sidebar > .label :last-child {
 * DAY SIDEBAR MONTH
 */
 swl-calendar::shadow .swl-calendar.day .day .sidebar > .month {
-  min-width: 270px;
+  min-width: 280px;
   height: inherit;
   grid-row: 1;
   grid-column: 2;

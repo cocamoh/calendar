@@ -91,11 +91,11 @@ swl-calendar::shadow .swl-calendar.week .foreground .content .day{display:grid;g
 swl-calendar::shadow .swl-calendar.week .foreground .content .day>div{border:2px solid rgba(255,255,255,.8);margin:0 5px;content:' '}
 swl-calendar::shadow .swl-calendar.day{height:100%}
 swl-calendar::shadow .swl-calendar.day>.day{height:100%;position:relative;display:grid;grid-auto-flow:row;grid-template-rows:1fr;grid-template-columns:1fr 1fr;box-sizing:border-box;margin-top:10px}
-swl-calendar::shadow .swl-calendar.day .day .sidebar{height:inherit;margin-right:10px;width:100%;display:grid;grid-template-rows:35vh 1fr;grid-template-columns:35vh 1fr;box-sizing:border-box}
+swl-calendar::shadow .swl-calendar.day .day .sidebar{height:inherit;margin-right:10px;width:100%;display:grid;grid-template-rows:minmax(min-content,170px) 1fr;grid-template-columns:35vh auto;box-sizing:border-box}
 swl-calendar::shadow .swl-calendar.day .day .sidebar>.label{height:inherit;grid-row:1;grid-column:1;display:flex;flex-direction:column;justify-content:center;align-items:center}
 swl-calendar::shadow .swl-calendar.day .day .sidebar>.label :first-child{font-size:20vmin}
 swl-calendar::shadow .swl-calendar.day .day .sidebar>.label :last-child{font-style:italic}
-swl-calendar::shadow .swl-calendar.day .day .sidebar>.month{min-width:270px;height:inherit;grid-row:1;grid-column:2;display:flex;justify-content:center;align-items:center;box-sizing:border-box}
+swl-calendar::shadow .swl-calendar.day .day .sidebar>.month{min-width:280px;height:inherit;grid-row:1;grid-column:2;display:flex;justify-content:center;align-items:center;box-sizing:border-box}
 swl-calendar::shadow .swl-calendar.day .day .sidebar>.month .content{width:100%;display:grid;grid-auto-flex:row;grid-template-rows:1fr;grid-template-columns:40px repeat(7,1fr);box-sizing:border-box}
 swl-calendar::shadow .swl-calendar.day .day .sidebar>.month .content .cell{margin:2px;text-align:center}
 swl-calendar::shadow .swl-calendar.day .day .sidebar>.month .content .cell:nth-of-type(n+9){border:1px solid grey}
