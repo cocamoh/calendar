@@ -986,6 +986,14 @@ http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and
 		var obj = this.shadowRoot.querySelector('.background .content .day [x="2"][y="' + position + '"]');
 		this.shadowRoot.querySelector('.background .content').scrollTop = obj.offsetTop;
 		this.shadowRoot.querySelector('.foreground .content').scrollTop = obj.offsetTop;
+		
+		var entry = this.shadowRoot.querySelector('[is="swl-sticky-list-headers"] [datetime="' + start.toISOString().slice(0,10) + '"]');
+		if(entry) {
+			entry.parentNode.scrollTop = entry.offsetTop;
+		} else {
+			this.shadowRoot.querySelector('[is="swl-sticky-list-headers"]').scrollTop = 1;
+			this.shadowRoot.querySelector('[is="swl-sticky-list-headers"]').scrollTop = 0;
+		}
 	}
 	swlCalendarProto.dayCalendar = function() {
 		var today = new Date();
