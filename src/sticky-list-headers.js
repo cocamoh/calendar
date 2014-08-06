@@ -30,12 +30,15 @@
 				this.swlHeaders.forEach(function(header, i) {
 					var container = header.parentNode;
 					
-					var div = document.createElement('div');
+					var style = header.getAttribute('style') || "";
+					if(style.indexOf('opacity:') != -1) {
+						header.style.opacity = "";
+					}
 					
+					var div = document.createElement('div');
 					div.appendChild(header.cloneNode(true));
 					
-					var style = header.getAttribute('style') || "";
-					header.setAttribute('style', style + "filter:alpha(opacity=0); opacity:0;");
+					header.setAttribute('style', style + "opacity:0;");
 					
 					
 					var style = "position: absolute; width: 100%;"
