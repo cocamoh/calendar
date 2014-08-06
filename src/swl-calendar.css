@@ -608,7 +608,8 @@ swl-calendar::shadow .swl-calendar.day .day .sidebar > .list {
 
 swl-calendar::shadow .swl-calendar.day .day .sidebar > .list .label,
 swl-calendar::shadow .swl-calendar.day .day .sidebar > .list::shadow .label {
-  font-style: bold;
+  background-color: #fff;
+  font-weight: bold;
   display: flex;
   flex-direction: row;
   flex-flow: wrap;

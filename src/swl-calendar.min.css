@@ -105,7 +105,7 @@ swl-calendar::shadow .swl-calendar.day .day .sidebar>.month .content .cell.inact
 swl-calendar::shadow .swl-calendar.day .day .sidebar>.month .content .cell:nth-of-type(8n-7){border:none;display:flex;justify-content:flex-end;align-items:center}
 swl-calendar::shadow .swl-calendar.day .day .sidebar>.month .content .cell:nth-of-type(8n-7) :first-child{text-align:center;background-color:lightgrey;font-size:.9rem;width:20px}
 swl-calendar::shadow .swl-calendar.day .day .sidebar>.list{height:inherit;grid-row:2;grid-column:1 / span 2;overflow:scroll;position:relative}
-swl-calendar::shadow .swl-calendar.day .day .sidebar>.list .label,swl-calendar::shadow .swl-calendar.day .day .sidebar>.list::shadow .label{font-style:bold;display:flex;flex-direction:row;flex-flow:wrap;width:100%}
+swl-calendar::shadow .swl-calendar.day .day .sidebar>.list .label,swl-calendar::shadow .swl-calendar.day .day .sidebar>.list::shadow .label{background-color:#fff;font-weight:700;display:flex;flex-direction:row;flex-flow:wrap;width:100%}
 swl-calendar::shadow .swl-calendar.day .day .sidebar>.list .label>div:first-of-type,swl-calendar::shadow .swl-calendar.day .day .sidebar>.list::shadow .label>div:first-of-type{flex:1}
 swl-calendar::shadow .swl-calendar.day .day .sidebar>.list ul,swl-calendar::shadow .swl-calendar.day .day .sidebar>.list::shadow ul{list-style:none;padding-left:0}
 swl-calendar::shadow .swl-calendar.day .day>.content{height:inherit;margin-left:10px;position:relative;display:grid;grid-auto-flow:column;grid-template-rows:2em 1fr;grid-template-columns:1fr;box-sizing:border-box}

@@ -1097,7 +1097,7 @@ http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and
 		
 		
 		// sidebar list
-		var listTpl = dayTpl.querySelector('.sidebar .list template').content;
+		var listTpl = dayTpl.querySelector('.sidebar .list template:first-of-type').content;
 		
 		
 		// need to be recreated because inside template it is not working
@@ -1106,26 +1106,11 @@ http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and
 		clone.classList.add('list');
 		
 		var list = listTpl.cloneNode(true);
+		list.querySelector('.label').setAttribute('datetime', date.toISOString().slice(0,10));
 		list.querySelector('.label div:first-of-type').textContent = date.toLocaleString(swlCalendarConfig.locale, { weekday: 'long' });
 		list.querySelector('.label div:last-of-type').textContent = date.toLocaleString(swlCalendarConfig.locale, swlCalendarConfig.date.date);
-		
 		clone.appendChild(list);
 		
-		/*
-		var list = listTpl.cloneNode(true);
-		list.querySelector('.label').textContent = "hello";
-		
-		for(var i = 0; i < 20; i++) {
-			var tmp = listTpl.querySelector('ul template').content.cloneNode(true);
-			tmp.querySelector('li').textContent = i+1;
-			list.querySelector('ul').appendChild(tmp);
-		}
-		
-		clone.appendChild(list);
-		*/
-		
-		//test.setAttribute("is", "swl-sticky-list-headers");
-		//dayObj.querySelector('.sidebar').appendChild(test);
 		
 		dayObj.querySelector('.sidebar').replaceChild(clone, dayObj.querySelector('.sidebar .list'));
 		//dayObj.querySelector('.sidebar .list').appendChild(list);
@@ -1133,6 +1118,7 @@ http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and
 		
 		
 		dayObj.querySelector('.content .header').innerHTML = "<strong>" + date.toLocaleString(swlCalendarConfig.locale, swlCalendarConfig.date.full) + "</strong>";
+		
 		
 		// allday
 		var bgDayTpl = dayTpl.querySelector('.day .content .events .background .allday template').content;
@@ -1308,6 +1294,8 @@ http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and
 					.querySelector('.foreground .content .day template').content;
 			}
 		}
+		this.listHeaderTpl = currentDoc.querySelector('#swl-calendar-day').content.querySelector('template').content.querySelector('.sidebar .list template:first-of-type').content;
+		this.listEntryTpl = currentDoc.querySelector('#swl-calendar-day').content.querySelector('template').content.querySelector('.sidebar .list template:last-of-type').content;
 	}
 	swlCalendarItemProto.hoverListener = function(ele) {
 		ele.addEventListener('mouseover', function() {
@@ -1634,6 +1622,8 @@ http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and
 	
 	
 	swlCalendarItemProto.dayCalendar = function() {
+		this.dayListEntry();
+		
 		var start = new Date(this.parentNode.getAttribute('year'), parseInt(this.parentNode.getAttribute('month')) - 1, this.parentNode.getAttribute('day'));
 		start.setHours(0,0,0,0);
 		
@@ -1785,6 +1775,93 @@ http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and
 		ele.swlDOMElement = this;
 		
 		this.rearrangeOverlappingEvents(2);
+	}
+	swlCalendarItemProto.dayListEntry = function(options) {
+		var options = options || {};
+		
+		var start = new Date(this.from.valueOf());
+		start.setHours(0,-start.getTimezoneOffset(),0,0);
+		
+		var end = new Date(this.to.valueOf());
+		end.setHours(0,-start.getTimezoneOffset(),0,0)
+		
+		var days = (end - start) / (1000 * 60 * 60 * 24);
+		
+		
+		var listObj = this.parentNode.shadowRoot.querySelector('[is="swl-sticky-list-headers"]');
+		
+		var date = new Date(start.valueOf());
+		//date.setTime(0,-date.getTimezoneOffset(),0,0);
+		for(var i = 0; i < days+1; i++) {
+			// find header label
+			
+			var header = listObj.querySelector('[datetime="' + date.toISOString().slice(0,10) + '"]');
+			
+			if(!header) {
+				// header not found. create it
+				header = this.dayListHeader(date, listObj);
+			}
+			
+			var entry = this.listEntryTpl.cloneNode(true);
+			entry.querySelector('span:first-of-type').textContent = this.getAttribute('summary')
+			if(this.allday) {
+				entry.querySelector('span:last-of-type').textContent = 'all-day'
+			} else {
+				entry.querySelector('span:last-of-type').textContent = "from " + this.from.toLocaleString(swlCalendarConfig.locale, swlCalendarConfig.time) + " to " + this.to.toLocaleString(swlCalendarConfig.locale, swlCalendarConfig.time)
+			}
+			
+			var childs = Array.prototype.slice.call(listObj.children);
+			var idx = childs.indexOf(header);
+			
+			var headers = Array.prototype.slice.call(listObj.querySelectorAll('.label'));
+			var idx2 = headers.indexOf(header);
+			
+			
+			if(idx >= listObj.children.length+1) {
+				listObj.append(entry);
+			} else {
+				listObj.insertBefore(entry, listObj.children[childs.indexOf(headers[idx2+1])])
+			}
+			
+			date.setDate(date.getDate() + 1);
+		}
+		
+	}
+	swlCalendarItemProto.dayListHeader = function(date, listObj) {
+		var entry = this.listHeaderTpl.cloneNode(true);
+		
+		entry.querySelector('.label').setAttribute('datetime', date.toISOString().slice(0,10));
+		entry.querySelector('.label div:first-of-type').textContent = date.toLocaleString(swlCalendarConfig.locale, { weekday: 'long' });
+		entry.querySelector('.label div:last-of-type').textContent = date.toLocaleString(swlCalendarConfig.locale, swlCalendarConfig.date.date);
+		
+		// check where to append
+		var headers = Array.prototype.slice.call(listObj.querySelectorAll(listObj.getAttribute('selector')));
+		for(var i = 0; i < headers.length; i++) {
+			var hDate0 = new Date(headers[i].getAttribute('datetime')); hDate0.setHours(0,-hDate0.getTimezoneOffset(),0,0);
+			var hDate1 = null;
+			if(headers[i+1]) {
+				hDate1 = new Date(headers[i+1].getAttribute('datetime'));
+				hDate1.setHours(0,-hDate0.getTimezoneOffset(),0,0);
+			}
+			
+			if(hDate0 > date) {
+				var ret = entry.querySelector('.label')
+				listObj.insertBefore(entry, headers[i]);
+				return ret;
+			} else if (headers.length == 1 && hDate0 > date) {
+				var ret = entry.querySelector('.label')
+				listObj.insertBefore(entry, headers[0]);
+				return ret;
+			} else if(hDate1 > date) {
+				var ret = entry.querySelector('.label')
+				listObj.insertBefore(entry, headers[i+1]);
+				return ret;
+			}
+		}
+		
+		var ret = entry.querySelector('.label')
+		listObj.appendChild(entry);
+		return ret;
 	}
 	
 	document.registerElement('swl-calendar-item', {
