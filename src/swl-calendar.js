@@ -21,6 +21,12 @@ http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and
 		// starting at monday = 0 (sunday = 6)
 		return (this.getUTCDay() + 6) % 7;
 	}
+	
+	Date.prototype.getMonday = function() {
+		var day = this.getDay(),
+			diff = this.getDate() - day + (day == 0 ? -6:1); // adjust when day is sunday
+		return new Date(this.setDate(diff));
+	}
 	/*
 	Date.prototype.getWeek = function() {
 		var d = new Date(this.getFullYear(), 0, 1);
@@ -309,14 +315,13 @@ http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and
 			
 			month.querySelector('header h1').textContent = start.toLocaleString(swlCalendarConfig.locale, {month: "long"})
 			
+			var tmp = new Date(start.valueOf()).getMonday();
 			for(var i = 0; i < 7; i++) {
 				var header = headerTpl.cloneNode(true);
-				
-				var tmp = new Date();
-				tmp.setDate(i);
 				header.querySelector('span').textContent = tmp.toLocaleString(swlCalendarConfig.locale, {weekday: "short"});
 				
 				month.querySelector('.header').appendChild(header);
+				tmp.setDate(tmp.getDate() + 1);
 			}
 			
 			// fill empty days
@@ -466,14 +471,13 @@ http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and
 		
 		var monthObj = monthTpl.cloneNode(true);
 		
+		var tmp = new Date(start.valueOf()).getMonday();
 		for(var i = 0; i < 7; i++) {
 			var header = headerTpl.cloneNode(true);
-			
-			var tmp = new Date();
-			tmp.setDate(i);
 			header.querySelector('span').textContent = tmp.toLocaleString(swlCalendarConfig.locale, {weekday: "short"});
 			
 			monthObj.querySelector('.header').appendChild(header);
+			tmp.setDate(tmp.getDate() + 1);
 		}
 		
 		var backgroundWeek = backgroundWeekTpl.cloneNode(true);
@@ -822,7 +826,7 @@ http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and
 		header.querySelector('div').appendChild(div);
 		week.querySelector('.header').appendChild(header);
 		
-		var date = new Date(start.valueOf());
+		var date = new Date(start.valueOf()).getMonday();
 		date.setHours(0, -date.getTimezoneOffset(), 0, 0);
 		for(var i = 0; i < 7; i++) {
 			var header = headerTpl.cloneNode(true);
@@ -1048,14 +1052,14 @@ http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and
 		
 		// sidebar month day label
 		dayObj.querySelector('.sidebar .month .content').appendChild(cellTpl.cloneNode(true));
+		var tmp = new Date(date.valueOf()).getMonday();
+		tmp.setHours(0, -tmp.getTimezoneOffset(), 0, 0)
 		for(var i = 0; i < 7; i++) {
 			var cell = cellTpl.cloneNode(true);
-			
-			var tmp = new Date();
-			tmp.setDate(i);
 			cell.querySelector('div').textContent = tmp.toLocaleString(swlCalendarConfig.locale, {weekday: "short"});
 			
 			dayObj.querySelector('.sidebar .month .content').appendChild(cell);
+			tmp.setDate(tmp.getDate() + 1);
 		}
 
 		// fill empty days
