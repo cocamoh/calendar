@@ -1815,7 +1815,7 @@ http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and
 			if(this.allday) {
 				entry.querySelector('span:last-of-type').textContent = 'all-day'
 			} else {
-				entry.querySelector('span:last-of-type').textContent = "from " + this.from.toLocaleString(swlCalendarConfig.locale, swlCalendarConfig.time) + " to " + this.to.toLocaleString(swlCalendarConfig.locale, swlCalendarConfig.time)
+				entry.querySelector('span:last-of-type').textContent = this.from.toLocaleString(swlCalendarConfig.locale, swlCalendarConfig.time) + " to " + this.to.toLocaleString(swlCalendarConfig.locale, swlCalendarConfig.time)
 			}
 			
 			var childs = Array.prototype.slice.call(listObj.children);

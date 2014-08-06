@@ -711,6 +711,7 @@ swl-calendar::shadow .swl-calendar.day .day .sidebar > .list::shadow .label {
 	flex-direction: row;
 	flex-flow: wrap;
 	width: 100%;
+	border-bottom: 1px solid black;
 }
 swl-calendar::shadow .swl-calendar.day .day .sidebar > .list .label > div:first-of-type,
 swl-calendar::shadow .swl-calendar.day .day .sidebar > .list::shadow .label > div:first-of-type {
@@ -727,6 +728,7 @@ swl-calendar::shadow .swl-calendar.day .day .sidebar > .list::shadow p {
 swl-calendar::shadow .swl-calendar.day .day .sidebar > .list p > span:first-of-type,
 swl-calendar::shadow .swl-calendar.day .day .sidebar > .list::shadow p > span:first-of-type {
 	flex: 1;
+	padding-right: 20px;
 }
 
 
