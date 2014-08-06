@@ -716,10 +716,16 @@ swl-calendar::shadow .swl-calendar.day .day .sidebar > .list::shadow .label > di
 	flex: 1;
 }
 
-swl-calendar::shadow .swl-calendar.day .day .sidebar > .list ul,
-swl-calendar::shadow .swl-calendar.day .day .sidebar > .list::shadow ul {
-	list-style: none;
-	padding-left: 0;
+swl-calendar::shadow .swl-calendar.day .day .sidebar > .list p,
+swl-calendar::shadow .swl-calendar.day .day .sidebar > .list::shadow p {
+	display: flex;
+	flex-direction: row;
+	flex-flex: wrap;
+	width: 100%;
+}
+swl-calendar::shadow .swl-calendar.day .day .sidebar > .list p > span:first-of-type,
+swl-calendar::shadow .swl-calendar.day .day .sidebar > .list::shadow p > span:first-of-type {
+	flex: 1;
 }
 
 
