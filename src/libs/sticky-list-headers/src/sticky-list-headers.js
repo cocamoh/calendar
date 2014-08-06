@@ -3,6 +3,13 @@
 	var swlStickyListHeadersProto = Object.create(HTMLDivElement.prototype, {
 		createdCallback: {
 			value: function() {
+				this.cache = {
+					ui: {
+						timer: null,
+						lastExecThrottle: 100,
+						lastExec: new Date()
+					}
+				}
 				this.createShadowRoot();
 				//this.shadowRoot.resetStyleInheritance = true; // <-- get rid of anything inherited
 				//root.applyAuthorStyles = true;
@@ -14,6 +21,9 @@
 				this.addEventListener('scroll', function() {
 					this.scroll();
 				}.bind(this));
+				
+				
+				window.addEventListener('resize', this.checkWindowSize.bind(this));
 				
 			}
 		},
@@ -60,10 +70,31 @@
 			}
 		}
 	});
+	swlStickyListHeadersProto.checkWindowSize = function(evt) {
+		if(!this.cache) return false;
+		var d = new Date();
+		if (d-this.cache.ui.lastExec < this.cache.ui.lastExecThrottle) {
+			if (this.cache.ui.timer) {
+				window.clearTimeout(this.cache.ui.timer);
+			}
+			this.cache.ui.timer = window.setTimeout(this.checkWindowSize, this.cache.ui.lastExecThrottle);
+			return false; // exit
+		}
+		this.cache.ui.lastExec = d; // update "last exec" time
+		this.calculateOffsets();
+	}
 	swlStickyListHeadersProto.calculateOffsets = function() {
+		
 		this.swlHeaders.forEach(function(header, i) {
 			//this.shadowRoot.querySelector('div[data-offset-top]:nth-of-type('+(i+1)+')').setAttribute('data-offset-top', header.offsetTop);
-			this.shadowRoot.querySelectorAll('div[data-offset-top]')[i].setAttribute('data-offset-top', header.offsetTop);
+			var ele = this.shadowRoot.querySelectorAll('div[data-offset-top]')[i];
+			ele.setAttribute('data-offset-top', header.offsetTop);
+			
+			if(header.offsetTop > header.parentNode.scrollTop) {
+				ele.style.top = header.offsetTop + "px";
+			}
+			
+			
 		}.bind(this));
 	}
 	swlStickyListHeadersProto.scroll = function() {
