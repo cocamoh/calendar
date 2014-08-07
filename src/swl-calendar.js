@@ -1223,7 +1223,7 @@ http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and
 		createdCallback: {
 			value: function() {
 				this.createShadowRoot();
-				this.shadowRoot.resetStyleInheritance = true; // <-- get rid of anything inherited
+				//this.shadowRoot.resetStyleInheritance = true; // <-- get rid of anything inherited
 				//root.applyAuthorStyles = true;
 			}
 		},
@@ -1252,8 +1252,45 @@ http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and
 					return;
 				}
 			}
+		},
+		attributeChangedCallback: {
+			value: function(attrName, oldVal, newVal) {
+				console.log(attrName + " :: " + oldValue + " :: " + newVal);
+			}
 		}
 	});
+	
+	swlCalendarItemProto.addDOM = function(dom) {
+		if(dom instanceof DocumentFragment) {
+			this.swlShadowElements.push(dom.querySelector(':first-child'));
+		} else {
+			this.swlShadowElements.push(dom);
+		}
+		
+		if(!dom.hasOwnProperty("swlDOMElement")) {
+			Object.defineProperty(dom, "swlDOMElement", {
+				value: null,
+				writable: true
+			});
+		}
+		dom.swlDOMElement = this;
+	}
+	swlCalendarItemProto.addListeners = function(dom) {
+		var ele = dom;
+		if(dom instanceof DocumentFragment) {
+			ele =  dom.querySelector(':first-child');
+		}
+		
+		ele.addEventListener('click', function(evt) {
+			this.click(evt);
+			/*
+			if(typeof(this.onclick) === 'function') {
+				this.onclick(evt);
+			}
+			*/
+			return false;
+		}.bind(this));
+	}
 	
 	swlCalendarItemProto.clearBindings = function() {
 		if(!this.hasOwnProperty("swlShadowElements")) {
@@ -1336,7 +1373,6 @@ http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and
 			});
 			this.unselectEvent();
 		}.bind(this));
-		
 	}
 	
 	swlCalendarItemProto.selectEvent = function() {
@@ -1350,10 +1386,12 @@ http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and
 	swlCalendarItemProto.bringEventToTop = function() {
 		this.swlShadowElements.forEach(function(shadow, i) {
 			var elements = Array.prototype.slice.call(shadow.parentNode.querySelectorAll('.foreground .content *[x="' + shadow.getAttribute('x') + '"]'));
-			elements.sort(function (a, b) {
-				return +parseInt(b.getAttribute('y')) - +parseInt(a.getAttribute('y'));
-			});
-			shadow.style.zIndex = elements[0].getAttribute('y')+1;
+			if(elements.length > 0) {
+				elements.sort(function (a, b) {
+					return +parseInt(b.getAttribute('y')) - +parseInt(a.getAttribute('y'));
+				});
+				shadow.style.zIndex = elements[0].getAttribute('y')+1;
+			}
 		}.bind(this));
 	}
 	swlCalendarItemProto.rearrangeOverlappingEvents = function(dayIdx) {
@@ -1430,8 +1468,6 @@ http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and
 		var rest = 7-dayIdx;
 		var span = days + 1;
 		
-		this.swlShadowElements.push(ele);
-		
 		if((rest-days) < 0) {
 			span = rest + 1;
 			ele.classList.add('right');
@@ -1454,20 +1490,13 @@ http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and
 		
 		ele.textContent = this.getAttribute('summary');
 		
+		this.addDOM(ele);
+		this.addListeners(ele);
+		
 		this.hoverListener(ele);
 		this.focusListener(ele);
 		
 		week.children[dayIdx].parentNode.appendChild(ele);
-		
-		
-		if(!ele.hasOwnProperty("swlDOMElement")) {
-			Object.defineProperty(ele, "swlDOMElement", {
-				value: null,
-				writable: true
-			});
-		}
-		ele.swlDOMElement = this;
-		
 	}
 	
 	
@@ -1511,7 +1540,6 @@ http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and
 		}
 	}
 	swlCalendarItemProto.weekAlldayEntry = function(dayIdx, days, options) {
-		
 		var options = options || {};
 		
 		var ele = this.template.cloneNode(true);
@@ -1542,21 +1570,13 @@ http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and
 			ele.querySelector('.time').textContent = "from " + this.from.toLocaleString(swlCalendarConfig.locale, swlCalendarConfig.date.day) + " to " + this.to.toLocaleString(swlCalendarConfig.locale, swlCalendarConfig.date.day);
 		}
 		
+		this.addDOM(ele);
+		this.addListeners(ele);
+		
 		this.hoverListener(ele.querySelector('div'));
 		this.focusListener(ele.querySelector('div'));
 		
-		this.swlShadowElements.push(ele.querySelector('div'));
-		
 		this.parentNode.shadowRoot.querySelector('.foreground .allday').appendChild(ele);
-		
-		
-		if(!ele.hasOwnProperty("swlDOMElement")) {
-			Object.defineProperty(ele, "swlDOMElement", {
-				value: null,
-				writable: true
-			});
-		}
-		ele.swlDOMElement = this;
 	}
 	swlCalendarItemProto.weekDayEntry = function(dayIdx, from, minutes, options) {
 		if(minutes < 0 || dayIdx > 8) return;
@@ -1613,13 +1633,16 @@ http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and
 			ele.querySelector('.time').textContent = "from " + this.from.toLocaleString(swlCalendarConfig.locale, swlCalendarConfig.time) + " to " + this.to.toLocaleString(swlCalendarConfig.locale, swlCalendarConfig.time);;
 		}
 		
+		this.addDOM(ele);
+		this.addListeners(ele);
+		
 		this.hoverListener(ele.querySelector('div'));
 		this.focusListener(ele.querySelector('div'));
 		
-		this.swlShadowElements.push(ele.querySelector('div'));
+		//this.swlShadowElements.push(ele.querySelector('div'));
 		
 		this.parentNode.shadowRoot.querySelector('.foreground .content .day').appendChild(ele);
-		
+		/*
 		if(!ele.hasOwnProperty("swlDOMElement")) {
 			Object.defineProperty(ele, "swlDOMElement", {
 				value: null,
@@ -1627,6 +1650,7 @@ http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and
 			});
 		}
 		ele.swlDOMElement = this;
+		*/
 		
 		this.rearrangeOverlappingEvents(dayIdx);
 		
@@ -1699,20 +1723,13 @@ http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and
 			ele.querySelector('.time').textContent = "from " + this.from.toLocaleString(swlCalendarConfig.locale, swlCalendarConfig.date.day) + " to " + this.to.toLocaleString(swlCalendarConfig.locale, swlCalendarConfig.date.day);
 		}
 		
+		this.addDOM(ele);
+		this.addListeners(ele);
+		
 		this.hoverListener(ele.querySelector('div'));
 		this.focusListener(ele.querySelector('div'));
 		
-		this.swlShadowElements.push(ele.querySelector('div'));
-		
 		this.parentNode.shadowRoot.querySelector('.foreground .allday').appendChild(ele);
-		
-		if(!ele.hasOwnProperty("swlDOMElement")) {
-			Object.defineProperty(ele, "swlDOMElement", {
-				value: null,
-				writable: true
-			});
-		}
-		ele.swlDOMElement = this;
 	}
 	swlCalendarItemProto.dayDayEntry = function(options) {
 		var options = options || {};
@@ -1764,6 +1781,9 @@ http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and
 		
 		ele.querySelector('div').setAttribute('tabindex', 0);
 		
+		this.addDOM(ele);
+		this.addListeners(ele);
+		
 		this.hoverListener(ele.querySelector('div'));
 		this.focusListener(ele.querySelector('div'));
 		
@@ -1774,17 +1794,7 @@ http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and
 		}
 		
 		
-		this.swlShadowElements.push(ele.querySelector('div'));
-		
 		this.parentNode.shadowRoot.querySelector('.foreground .content .day').appendChild(ele);
-		
-		if(!ele.hasOwnProperty("swlDOMElement")) {
-			Object.defineProperty(ele, "swlDOMElement", {
-				value: null,
-				writable: true
-			});
-		}
-		ele.swlDOMElement = this;
 		
 		this.rearrangeOverlappingEvents(2);
 	}
@@ -1822,12 +1832,16 @@ http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and
 				entry.querySelector('span:last-of-type').textContent = this.from.toLocaleString(swlCalendarConfig.locale, swlCalendarConfig.time) + " to " + this.to.toLocaleString(swlCalendarConfig.locale, swlCalendarConfig.time)
 			}
 			
+			// adding dom and listeners
+			this.addDOM(entry);
+			this.addListeners(entry);
+			
+			
 			var childs = Array.prototype.slice.call(listObj.children);
 			var idx = childs.indexOf(header);
 			
 			var headers = Array.prototype.slice.call(listObj.querySelectorAll('.label'));
 			var idx2 = headers.indexOf(header);
-			
 			
 			if(idx >= listObj.children.length+1) {
 				listObj.append(entry);

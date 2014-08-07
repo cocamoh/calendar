@@ -21,7 +21,7 @@
 </head>
 <body>
 	<swl-calendar view="day" year="2014" month="7" day="16" week="29">
-		<swl-calendar-item from="2014-07-14" to="" allday="true" summary="A all">A all-day</swl-calendar-item>
+		<swl-calendar-item id="test" from="2014-07-14" to="" allday="true" summary="A all">A all-day</swl-calendar-item>
 		<swl-calendar-item from="2014-07-17" to="2014-07-19" allday="true" summary="B all">B all-day</swl-calendar-item>
 		<swl-calendar-item from="2014-07-11" to="2014-07-16" allday="true" summary="C all">C all-day</swl-calendar-item>
 		<swl-calendar-item from="2014-07-15" to="2014-07-23" allday="true" summary="D all">D all-day</swl-calendar-item>
@@ -43,6 +43,14 @@
 		
 		<p>this is a test (find me at <a href="http://iocast.github.io">GitHub Pages</a>)</p>
 	</swl-calendar>
+	
+	<script>
+	var tmp = document.querySelector('#test');
+	
+	tmp.onclick = function(evt) {
+		console.log(evt);
+	}
+	</script>
 	
 </body>
 </html>
