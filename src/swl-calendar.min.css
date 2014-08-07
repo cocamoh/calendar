@@ -1,8 +1,8 @@
 swl-calendar::shadow menu{margin:0;padding:0}
-swl-calendar::shadow header{display:flex;flex-flow:row wrap;box-sizing:border-box;width:100%;border-bottom:1px solid green}
+swl-calendar::shadow menu button{border:1px solid #000;background-color:#fff}
+swl-calendar::shadow menu button.disabled{background-color:#c8c8c8}
+swl-calendar::shadow header{display:flex;flex-flow:row wrap;box-sizing:border-box;width:100%}
 swl-calendar::shadow header>div{flex:1;text-align:center}
-swl-calendar::shadow header>menu:first-of-type{border:3px solid purple}
-swl-calendar::shadow header>menu:last-of-type{border:3px solid #00f}
 swl-calendar::shadow .swl-calendar.year{display:flex;flex-flow:row wrap;box-sizing:border-box;width:100%;min-width:267px}
 swl-calendar::shadow .swl-calendar.year .month{flex:1 0 23.125%;position:relative;overflow:hidden;margin:10px;min-width:267px}
 swl-calendar::shadow .swl-calendar.year .month .header{display:flex;flex-flow:row wrap;min-width:267px;box-sizing:border-box;width:100%;padding:2px}

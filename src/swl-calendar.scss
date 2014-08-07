@@ -1,6 +1,14 @@
 swl-calendar::shadow menu {
 	margin: 0;
 	padding: 0;
+	
+	button {
+		border: 1px solid rgba(0,0,0,1);
+		background-color: rgba(255,255,255,1);
+	}
+	button.disabled {
+		background-color: rgba(200,200,200,1);
+	}
 }
 
 swl-calendar::shadow header {
@@ -9,7 +17,6 @@ swl-calendar::shadow header {
 	box-sizing: border-box;
 	
 	width: 100%;
-	border-bottom: 1px solid green;
 }
 
 swl-calendar::shadow header > div {
@@ -17,10 +24,8 @@ swl-calendar::shadow header > div {
 	text-align: center;
 }
 swl-calendar::shadow header > menu:first-of-type {
-	border: 3px solid purple;
 }
 swl-calendar::shadow header > menu:last-of-type {
-	border: 3px solid blue;
 }
 
 

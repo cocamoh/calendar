@@ -273,15 +273,15 @@ http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and
 			this.setAttribute('day', now.getDate());
 		}.bind(this));
 		
-		this.shadowRoot.querySelector('header menu:last-of-type button:first-of-type').addEventListener('click', function(evt) {
+		this.shadowRoot.querySelector('header menu:last-of-type button:nth-of-type(2)').addEventListener('click', function(evt) {
 			this.setAttribute('view', 'month');
 		}.bind(this));
 		
-		this.shadowRoot.querySelector('header menu:last-of-type button:nth-of-type(2)').addEventListener('click', function(evt) {
+		this.shadowRoot.querySelector('header menu:last-of-type button:nth-of-type(3)').addEventListener('click', function(evt) {
 			this.setAttribute('view', 'week');
 		}.bind(this));
 		
-		this.shadowRoot.querySelector('header menu:last-of-type button:nth-of-type(3)').addEventListener('click', function(evt) {
+		this.shadowRoot.querySelector('header menu:last-of-type button:nth-of-type(4)').addEventListener('click', function(evt) {
 			this.setAttribute('view', 'day');
 		}.bind(this));
 	}
@@ -421,15 +421,15 @@ http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and
 			this.setAttribute('day', now.getDate());
 		}.bind(this));
 		
-		this.shadowRoot.querySelector('header menu:last-of-type button:first-of-type').addEventListener('click', function(evt) {
+		this.shadowRoot.querySelector('header menu:last-of-type button:nth-of-type(1)').addEventListener('click', function(evt) {
 			this.setAttribute('view', 'year');
 		}.bind(this));
 		
-		this.shadowRoot.querySelector('header menu:last-of-type button:nth-of-type(2)').addEventListener('click', function(evt) {
+		this.shadowRoot.querySelector('header menu:last-of-type button:nth-of-type(3)').addEventListener('click', function(evt) {
 			this.setAttribute('view', 'week');
 		}.bind(this));
 		
-		this.shadowRoot.querySelector('header menu:last-of-type button:nth-of-type(3)').addEventListener('click', function(evt) {
+		this.shadowRoot.querySelector('header menu:last-of-type button:nth-of-type(4)').addEventListener('click', function(evt) {
 			this.setAttribute('view', 'day');
 		}.bind(this));
 	}
@@ -742,7 +742,7 @@ http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and
 			this.scrollToWeekNow();
 		}.bind(this));
 		
-		this.shadowRoot.querySelector('header menu:last-of-type button:first-of-type').addEventListener('click', function(evt) {
+		this.shadowRoot.querySelector('header menu:last-of-type button:nth-of-type(1)').addEventListener('click', function(evt) {
 			this.setAttribute('view', 'year');
 		}.bind(this));
 		
@@ -750,7 +750,7 @@ http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and
 			this.setAttribute('view', 'month');
 		}.bind(this));
 		
-		this.shadowRoot.querySelector('header menu:last-of-type button:nth-of-type(3)').addEventListener('click', function(evt) {
+		this.shadowRoot.querySelector('header menu:last-of-type button:nth-of-type(4)').addEventListener('click', function(evt) {
 			this.setAttribute('view', 'day');
 		}.bind(this));
 	}
@@ -959,7 +959,7 @@ http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and
 			this.setAttribute('day', now.getDate());
 		}.bind(this));
 		
-		this.shadowRoot.querySelector('header menu:last-of-type button:first-of-type').addEventListener('click', function(evt) {
+		this.shadowRoot.querySelector('header menu:last-of-type button:nth-of-type(1)').addEventListener('click', function(evt) {
 			this.setAttribute('view', 'year');
 		}.bind(this));
 		
