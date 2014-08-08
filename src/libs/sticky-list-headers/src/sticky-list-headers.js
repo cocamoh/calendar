@@ -136,6 +136,26 @@
 			}
 		}.bind(this));
 	}
+	swlStickyListHeadersProto.scrollToElement = function(ele) {
+		var style =  ele.currentStyle || window.getComputedStyle(ele);
+		var header = this.getHeaderOfElement(ele);
+		if(header) {
+			var headerStyle = header.currentStyle || window.getComputedStyle(header);
+			ele.parentNode.scrollTop = ele.offsetTop - header.offsetHeight - parseInt(style.marginTop) - parseInt(headerStyle.marginTop);
+		} else {
+			ele.parentNode.scrollTop = ele.offsetTop - parseInt(style.marginTop);
+		}
+	}
+	swlStickyListHeadersProto.getHeaderOfElement = function(ele) {
+		var children = Array.prototype.slice.call(ele.parentNode.children);
+		for(var i = 0; i < this.swlHeaders.length; i++) {
+			if(children.indexOf(this.swlHeaders[i]) > children.indexOf(ele)) {
+				return this.swlHeaders[i-1];
+			}
+		}
+		return null;
+	}
+	
 	
 	document.registerElement('swl-sticky-list-headers', {
 		prototype: swlStickyListHeadersProto,
