@@ -254,7 +254,15 @@ http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and
 	swlCalendarProto.clear = function() {
 		while(this.shadowRoot.firstChild) this.shadowRoot.removeChild(this.shadowRoot.firstChild);
 	}
-	
+	swlCalendarProto.scrollToElement = function(ele) {
+		ele.swlShadowElements.forEach(function(dom, i) {
+			if(dom.parentNode.getAttribute('is') === "swl-sticky-list-headers") {
+				dom.parentNode.scrollToElement(dom);
+			} else {
+				dom.parentNode.parentNode.scrollTop = dom.offsetTop;
+			}
+		});
+	}
 	
 	swlCalendarProto.setYearEvents = function() {
 		this.shadowRoot.querySelector('header menu:first-of-type button:first-of-type').addEventListener('click', function(evt) {
@@ -1283,11 +1291,7 @@ http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and
 		
 		ele.addEventListener('click', function(evt) {
 			this.click(evt);
-			/*
-			if(typeof(this.onclick) === 'function') {
-				this.onclick(evt);
-			}
-			*/
+			// if(typeof(this.onclick) === 'function') { this.onclick(evt); }
 			return false;
 		}.bind(this));
 	}
@@ -1365,6 +1369,7 @@ http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and
 				obj.classList.add('focus');
 			});
 			this.selectEvent();
+			this.parentNode.scrollToElement(this);
 		}.bind(this));
 	
 		ele.addEventListener('blur', function() {
