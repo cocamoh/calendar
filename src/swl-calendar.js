@@ -1263,7 +1263,7 @@ http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and
 		},
 		attributeChangedCallback: {
 			value: function(attrName, oldVal, newVal) {
-				console.log(attrName + " :: " + oldValue + " :: " + newVal);
+				console.log(attrName + " :: " + oldVal + " :: " + newVal);
 			}
 		}
 	});
