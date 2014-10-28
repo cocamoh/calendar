@@ -10,7 +10,7 @@ var swlStickyListHeadersProto = Object.create(HTMLDivElement.prototype, {
 			}
 			this.createShadowRoot();
 			this.shadowRoot.resetStyleInheritance = false; // <-- get rid of anything inherited
-			this.shadowRoot.applyAuthorStyles = true; // <-- deprecated but need to add 'cause applying parent style
+			//this.shadowRoot.applyAuthorStyles = true; // <-- deprecated but need to add 'cause applying parent style
 			
 			this.shadowRoot.appendChild(document.createElement('content'));
 			
