@@ -1,0 +1,3 @@
+[submodule "src/libs/sticky-list-headers"]
+	path = src/libs/sticky-list-headers
+	url = https://github.com/semantic-web-library/sticky-list-headers.git
